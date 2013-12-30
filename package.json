@@ -1,0 +1,28 @@
+{
+  "name": "issue-tracker",
+  "version": "0.0.0",
+  "description": "github issues tracker, streak style",
+  "main": "index.js",
+  "bin": {
+    "trckr": "index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "issues",
+    "tracker",
+    "streak",
+    "github",
+    "leveldb"
+  ],
+  "author": "David Dias <daviddias.p@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "model": "~0.4.13",
+    "level": "~0.18.0",
+    "optimist": "~0.6.0",
+    "colors": "~0.6.2",
+    "read": "~1.0.5"
+  }
+}
