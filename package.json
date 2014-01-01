@@ -19,10 +19,10 @@
   "author": "David Dias <daviddias.p@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "model": "~0.4.13",
     "level": "~0.18.0",
     "optimist": "~0.6.0",
     "colors": "~0.6.2",
-    "read": "~1.0.5"
+    "read": "~1.0.5",
+    "model": "mde/model#daf6d78"
   }
 }
