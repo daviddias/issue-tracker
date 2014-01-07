@@ -4,31 +4,25 @@ var adapter = require('./..').adapter;
 
 var Issue = function () {
   this.adapter = adapter;
-  this.property('id', 'string', {required: true});
-  // this.property('password', 'string', {required: true});
-  // this.property('lastName', 'string');
-  // this.property('firstName', 'string');
-
-  // this.validatesPresent('login');
-  // this.validatesFormat('login', /[a-z]+/, {message: 'Subdivisions!'});
-  // this.validatesLength('login', {min: 3});
-  // this.validatesConfirmed('password', 'confirmPassword');
-  // this.validatesWithFunction('password', function (s) {
-  //     // Something that returns true or false
-  //     return s.length > 0;
-  // });
-
-  // // Can define methods for instances like this
-  // this.someMethod = function () {
-  //   // Do some stuff
-  // };
+  // github stuff
+  this.property('url','string');
+  this.property('html_url','string');
+  this.property('number','number');
+  this.property('state','string');
+  this.property('title','string');
+  this.property('body','string');
+  this.property('user','object');
+  this.property('labels','object');
+  this.property('assignee','object');
+  this.property('milestone','object');
+  this.property('comments','number');
+  this.property('pull_request','object');
+  this.property('closed_at','date');
+  this.property('created_at','date');
+  this.property('updated_at','date');
+  // trckr stuff
+  this.property('trckr','object');
 };
 
-// // Can also define them on the prototype
-// User.prototype.someOtherMethod = function () {
-//   // Do some other stuff
-// };
-
 model.register('Issue', Issue);
-
 // model.getModelByName('Issue') ? console.log('yeei') : console.log('boo');
