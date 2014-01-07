@@ -1,5 +1,5 @@
 {
-  "name": "issue-tracker",
+  "name": "trckr",
   "version": "0.0.0",
   "description": "github issues tracker, streak style",
   "main": "index.js",

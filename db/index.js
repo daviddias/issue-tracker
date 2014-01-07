@@ -1,16 +1,18 @@
-var model = require('model');
-var path = require('path');
+var model   = require('model');
+var path    = require('path');
+var fs      = require('fs');
 
-/// level adapter hack
+var config  = require('./db.js');
 
-// var Adapter = require(path.join(path.dirname(require.resolve('model')), 'adapters', 'level')).Adapter
-var config  = require('./db.json');
-
+if (!fs.existsSync(config.level.db)){
+  fs.mkdirSync(config.level.db);  
+}
 
 exports = module.exports; 
-// exports.adapter = new Adapter(config.level);
 exports.adapter = model.createAdapter('level', config.level)
 
 /// require the models
 
 require('./models/issue.js');
+
+
