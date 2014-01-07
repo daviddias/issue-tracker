@@ -1,16 +1,18 @@
 var request     = require('request');
 // require('./../db'); // for testing
 var Issue       = require('model').getModelByName('Issue');
+var secrets     = require('./../secrets.json');
 
 
 var options = {
   url: 'https://api.github.com/repos/joyent/node/issues',
   headers: {
-    'User-Agent': 'diasdavid'
+    'User-Agent': secrets.useragent
   },
   qs: {
     state: 'open',
-    page: 1
+    page: 1,
+    access_token: secrets.accesstoken
   }
 };
 
@@ -37,11 +39,10 @@ function receiveIssues(err, response, body) {
 }
 
 function parseIssues(body) {
-  if(JSON.parse(body) instanceof Object === true) {
-    console.log(body);
+  if(body.indexOf('API rate limit exceeded') !== -1) {
+    console.log('API rate limit exceeded');
     process.exit(1);
   }
-
 
   JSON.parse(body).forEach(storeIssue);
 }
