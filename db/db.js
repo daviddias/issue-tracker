@@ -1,6 +1,8 @@
-module.exports = 
+var userHome = require('osenv').home;
+
+module.exports =
 {
-  "level": {
-    "db": process.env.HOME + "/trkrdb"
+  'level': {
+    'db': userHome + '/.trkrdb/'
   }
-}
+};
