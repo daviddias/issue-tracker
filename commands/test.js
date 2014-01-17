@@ -1,6 +1,5 @@
 require('colors');
 
-
 exports = module.exports = test;
 
 exports.usage =

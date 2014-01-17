@@ -21,7 +21,9 @@ var Issue = function () {
   this.property('created_at','date');
   this.property('updated_at','date');
   // trckr stuff
-  this.property('trckr','object');
+  this.property('trckr_state','string');
+  this.property('trckr_lastReviewd','string');
+  this.property('trckr_pingBack','string');
 };
 
 model.register('Issue', Issue);

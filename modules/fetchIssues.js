@@ -4,8 +4,7 @@ var Issue       = require('model').getModelByName('Issue');
 var secret      = require('./config.js').getConfig().secret;
 var repo        = require('./config.js').getConfig().repo;
 var pipeline    = require('./config.js').getConfig().pipeline;
-
-
+var error       = require('./error.js');
 
 var options = {
   url: 'https://api.github.com/repos/' + repo + '/issues',
@@ -20,6 +19,10 @@ var options = {
 };
 
 module.exports = function(state) {
+  if(!secret.useragent || !secret.accesstoken){
+    error('No access credentials defined');
+  }
+
   if (state) {
     options.qs.state = state;
   }
@@ -59,6 +62,8 @@ function storeIssue(issue) {
     var issue = _issue;
 
     return function (err, result) {
+      console.log('STARTING');
+
       if (err) {
         return console.log(err);
       }
@@ -69,7 +74,7 @@ function storeIssue(issue) {
         result[0].html_url = issue.html_url;
         result[0].state = issue.state;
         if(result[0].state === 'closed') {
-          result[0].trckr.state = 'closed';
+          result[0]['trckr_state'] = 'closed';
         }
         result[0].title = issue.title;
         result[0].body = issue.body;
@@ -91,18 +96,25 @@ function storeIssue(issue) {
 
       } else {
         // 1.b if not - store
-        var trckr = {
-          state: pipeline[0],
-          lastReviewd: null,
-          pingBack: null
-        };
-        issue.trckr = trckr;
+
+        // FIXME - the trckr_ are not being saved accordingly
+
+
+        // issue['trckr-state'] = pipeline[0];
+        console.log('-- 1 -- \n',issue);
+
+        issue.trckr_state = 'new';
+        issue.trckr_lastReviewd = null;
+        issue.trckr_pingBack = null;
+
+        console.log('-- 2 -- \n',issue);
 
         var newIssue = Issue.create(issue);
         newIssue.save(function (err, data) {
           if (err) {
             return console.log(err);
           }
+          console.log('-- 3 -- \n',data);
           console.log('New Issue Saved: '.green + issue.number + ' ' + new Date());
         });
       }
