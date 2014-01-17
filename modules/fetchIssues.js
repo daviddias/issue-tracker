@@ -7,8 +7,7 @@ var repo        = require('./config.js').repo;
 var pipeline    = require('./config.js').pipeline;
 
 var options = {
-  // url: 'https://api.github.com/repos/joyent/node/issues',
-  url: repo,
+  url: 'https://api.github.com/repos/' + repo + '/issues',
   headers: {
     'User-Agent': secret.useragent
   },

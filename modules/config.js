@@ -21,10 +21,12 @@ function loadConfig() {
   }
 }
 
+
 function setDefault(){
   config = {
     pipeline: ['new','beingReviewd','future','closed'],
-    repo: 'https://github.com/diasdavid/issue-tracker',
+    repo: 'diasdavid/issue-tracker',
+    // repo: 'https://api.github.com/repos/' + joyent/node + '/issues',
     secret: {
       useragent: '',
       accesstoken: ''
