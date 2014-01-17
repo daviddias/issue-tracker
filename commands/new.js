@@ -9,7 +9,7 @@ function usage(name, args) {
     usage('trckr new');
 };
  
-function fullupdate(args, authToken) {
+function fullupdate(args) {
   console.log('→ New issues'.green);
  
   Issue.all({trckr_state:'new'}, gotIssues);
