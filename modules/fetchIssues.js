@@ -1,32 +1,35 @@
+require('colors');
 var request     = require('request');
-// require('./../db'); // for testing
 var Issue       = require('model').getModelByName('Issue');
-var secrets     = require('./../secrets.json');
-
+// var secret     = require('./../secrets.json');
+var secret      = require('./config.js').secret;
+var repo        = require('./config.js').repo;
+var pipeline    = require('./config.js').pipeline;
 
 var options = {
-  url: 'https://api.github.com/repos/joyent/node/issues',
+  // url: 'https://api.github.com/repos/joyent/node/issues',
+  url: repo,
   headers: {
-    'User-Agent': secrets.useragent
+    'User-Agent': secret.useragent
   },
   qs: {
     state: 'open',
     page: 1,
-    access_token: secrets.accesstoken
+    access_token: secret.accesstoken
   }
 };
 
-module.exports = function() {
+module.exports = function(state) {
+  if (state) {
+    options.qs.state = state;
+  }
   request.get(options, receiveIssues);
-}
-
-
+};
 
 function receiveIssues(err, response, body) {
   if (err) {
     return console.log(err);
   }
-  // console.log(response.headers.link);
   parseIssues(body);
 
   if (response.headers.link.indexOf('next') !== -1){
@@ -65,6 +68,9 @@ function storeIssue(issue) {
         result[0].url = issue.url;
         result[0].html_url = issue.html_url;
         result[0].state = issue.state;
+        if(result[0].state === 'closed') {
+          result[0].trckr.state = 'closed';
+        }
         result[0].title = issue.title;
         result[0].body = issue.body;
         result[0].user = issue.user;
@@ -80,13 +86,13 @@ function storeIssue(issue) {
           if (err) {
             return console.log(err);
           }
-          console.log('Updated Issue: ' + new Date());
+          console.log('Updated Issue: '.green + new Date());
         });
 
       } else {
         // 1.b if not - store
         var trckr = {
-          state: 'new',
+          state: pipeline[0],
           lastReviewd: null,
           pingBack: null
         };
@@ -97,7 +103,7 @@ function storeIssue(issue) {
           if (err) {
             return console.log(err);
           }
-          console.log('New Issue Saved: ' + new Date());
+          console.log('New Issue Saved: '.green + new Date());
         });
       }
     };

@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
+require('./modules/config.js')();
 require('./db');
 
 var version = process.versions.node.split('.');
-if (version[0] == 0 && version[1] < 10) {
+if (version[0] === 0 && version[1] < 10) {
   console.error('Error: Cannot run in Node.js version < 0.10');
   process.exit(1);
 }
@@ -32,7 +33,9 @@ if (! ~commands.list().indexOf(command)) {
 
 var args = optimist(args);
 var module = commands.module(command);
-if (module.usage) module.usage(command, args);
+if (module.usage) {
+  module.usage(command, args);
+}
 
 module(args.argv);
 

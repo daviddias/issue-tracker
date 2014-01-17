@@ -1,8 +1,9 @@
 require('colors');
-var read     = require('read');
-var fs       = require('fs');
-var error    = require('../modules/error.js');
-var model    = require('model');
+// var read        = require('read');
+// var fs          = require('fs');
+// var error       = require('../modules/error.js');
+// var model       = require('model');
+var fetchIssues = require('../modules/fetchIssues.js');
 
 exports = module.exports = fullupdate;
 
@@ -13,6 +14,8 @@ function usage(name, args) {
 };
 
 function fullupdate(args, authToken) {
-
+  console.log('→ FULL Update (closed and open issues)'.green);
+  fetchIssues();
+  fetchIssues('closed');
 
 }

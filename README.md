@@ -5,10 +5,14 @@ This is a command-line tool to keep track of all the issues in a github project 
 
 ## features aka commands
 
-- [ ] `trckr update` - fetch all the issues, update the database and close the ones needed to be close
-- [ ] `trckr list -n<number> [<state>]`  - list all/number of open issues in a determined <state> 
-- [ ] `trckr open <issueNumber>`
-- [ ] `trckr state <issueNumber> <state>`  - change the state of an issue
+```bash
+trckr update
+trckr fullupdate
+trckr new                               # tell me what issues are 'new'
+trckr pipeline <issueNumber> <state>    # alias to pipeline should be pl
+trckr pipeline <issueNumber> next       # alias to pipeline should be pl
+trckr review                            # tell me the issues that I don't review for more than the 'threshold' number of days
+```
 
 ### Issue object model
 
