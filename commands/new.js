@@ -15,12 +15,12 @@ function fullupdate(args) {
   Issue.all({trckr_state:'new'}, gotIssues);
  
   function gotIssues(err, issues) {
-    console.log("AAAAA \n",issues[0]);
+    console.log("++++++++++++++++ \n",issues[0]);
   }
  
  
-  Issue.all({number: 6718}, function (err, things){
-    console.log("BBBBBB \n",things);
+  Issue.all({number: 1}, function (err, things){
+    console.log("**************** \n",things);
   });
  
    
