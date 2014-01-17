@@ -5,13 +5,18 @@ This is a command-line tool to keep track of all the issues in a github project 
 
 ## features aka commands
 
-```bash
-trckr update
+
+
+
+
 trckr fullupdate
 trckr new                               # tell me what issues are 'new'
 trckr pipeline <issueNumber> <state>    # alias to pipeline should be pl
 trckr pipeline <issueNumber> next       # alias to pipeline should be pl
 trckr review                            # tell me the issues that I don't review for more than the 'threshold' number of days
+trckr set pipeline new,a,b,c,d,e,close
+trckt set repo <user/reponame>
+trckr set secret <useragent> <accesstoken>
 ```
 
 ### Issue object model

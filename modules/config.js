@@ -2,14 +2,20 @@ var userHome    = require('osenv').home();
 var configPath  = userHome + '/.trckr-config.json';
 var fs          = require('fs');
 
-exports = module.exports = loadConfig;
-exports.config      = config;
+var config;
+
+// exports = module.exports = config;
+exports.getConfig   = getConfig;
+exports.loadConfig  = loadConfig;
 exports.setDefault  = setDefault;
 exports.setRepo     = setRepo;
 exports.setPipeline = setPipeline;
 exports.setSecret   = setSecret;
 
-var config = {};
+function getConfig() {
+  return config;
+}
+
 
 function loadConfig() {
   if (!fs.existsSync(configPath)) {
@@ -49,7 +55,7 @@ function setPipeline(pipeline) {
 }
 
 function setSecret(useragent, accesstoken){
-  config.useragent   = useragent;
-  config.accesstoken = accesstoken;
+  config.secret.useragent   = useragent;
+  config.secret.traccesstoken = accesstoken;
   saveConfig();
 }

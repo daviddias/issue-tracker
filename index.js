@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-require('./modules/config.js')();
+require('./modules/config.js').loadConfig();
 require('./db');
 
 var version = process.versions.node.split('.');

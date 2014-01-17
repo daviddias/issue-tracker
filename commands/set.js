@@ -80,11 +80,37 @@ function update(args) {
   }
 
   function setSecrets() {
-    
+    getUseragent(function (useragent) {
+      getAccesstoken(function (accesstoken) {
+        config.setSecret(useragent, accesstoken);
+      });
+    });
 
+    function getUseragent(cb) {
+      var useragent = args._[1];
+      if (useragent) {
+        return cb(useragent);
+      }
 
+      read({
+        prompt: 'useragent (e.g: diasdavid): '
+      }, function(err, useragent) {
+        cb(useragent);
+      });
+    }
 
+    function getAccesstoken(cb) {
+      var accesstoken = args._[2];
+      if (accesstoken) {
+        return cb(accesstoken);
+      }
 
+      read({
+        prompt: 'accesstoken : '
+      }, function(err, accesstoken) {
+        cb(accesstoken);
+      });
+    }
   }
 
 }

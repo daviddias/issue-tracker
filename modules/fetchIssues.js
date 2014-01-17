@@ -1,10 +1,11 @@
 require('colors');
 var request     = require('request');
 var Issue       = require('model').getModelByName('Issue');
-// var secret     = require('./../secrets.json');
-var secret      = require('./config.js').secret;
-var repo        = require('./config.js').repo;
-var pipeline    = require('./config.js').pipeline;
+var secret      = require('./config.js').getConfig().secret;
+var repo        = require('./config.js').getConfig().repo;
+var pipeline    = require('./config.js').getConfig().pipeline;
+
+
 
 var options = {
   url: 'https://api.github.com/repos/' + repo + '/issues',
@@ -85,7 +86,7 @@ function storeIssue(issue) {
           if (err) {
             return console.log(err);
           }
-          console.log('Updated Issue: '.green + new Date());
+          console.log('Updated Issue: '.green + issue.number + ' ' + new Date());
         });
 
       } else {
@@ -102,7 +103,7 @@ function storeIssue(issue) {
           if (err) {
             return console.log(err);
           }
-          console.log('New Issue Saved: '.green + new Date());
+          console.log('New Issue Saved: '.green + issue.number + ' ' + new Date());
         });
       }
     };
