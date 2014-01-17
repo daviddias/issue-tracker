@@ -1,10 +1,8 @@
 var model = require('model');
 var adapter = require('./..').adapter;
 
-
 var Issue = function () {
   this.adapter = adapter;
-  // github stuff
   this.property('url','string');
   this.property('html_url','string');
   this.property('number','number');
@@ -20,11 +18,9 @@ var Issue = function () {
   this.property('closed_at','date');
   this.property('created_at','date');
   this.property('updated_at','date');
-  // trckr stuff
   this.property('trckr_state','string');
-  this.property('trckr_lastReviewd','string');
-  this.property('trckr_pingBack','string');
+  this.property('trckr_lastreview','string');
+  this.property('trckr_pingback','string');
 };
 
 model.register('Issue', Issue);
-// model.getModelByName('Issue') ? console.log('yeei') : console.log('boo');

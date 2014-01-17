@@ -62,8 +62,6 @@ function storeIssue(issue) {
     var issue = _issue;
 
     return function (err, result) {
-      console.log('STARTING');
-
       if (err) {
         return console.log(err);
       }
@@ -96,26 +94,16 @@ function storeIssue(issue) {
 
       } else {
         // 1.b if not - store
-
-        // FIXME - the trckr_ are not being saved accordingly
-
-
-        // issue['trckr-state'] = pipeline[0];
-        console.log('-- 1 -- \n',issue);
-
-        issue.trckr_state = 'new';
-        issue.trckr_lastReviewd = null;
-        issue.trckr_pingBack = null;
-
-        console.log('-- 2 -- \n',issue);
-
         var newIssue = Issue.create(issue);
-        newIssue.save(function (err, data) {
+        newIssue.trckr_state = 'new';
+        newIssue.trckr_lastreview = null;
+        newIssue.trckr_pingback = null;
+        newIssue.save( function (err, data) {
           if (err) {
             return console.log(err);
           }
-          console.log('-- 3 -- \n',data);
-          console.log('New Issue Saved: '.green + issue.number + ' ' + new Date());
+          console.log('Data saved \n'.yellow, data);
+          console.log('New Issue Saved: '.green + data.number + ' ' + new Date());
         });
       }
     };
