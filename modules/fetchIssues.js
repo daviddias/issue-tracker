@@ -35,7 +35,7 @@ function receiveIssues(err, response, body) {
   }
   parseIssues(body);
 
-  if (response.headers.link.indexOf('next') !== -1){
+  if (response.headers.link && response.headers.link.indexOf('next') !== -1){
     // there is more to fetch
     options.qs.page = options.qs.page + 1;
     request.get(options, receiveIssues);
