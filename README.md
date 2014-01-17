@@ -5,10 +5,7 @@ This is a command-line tool to keep track of all the issues in a github project 
 
 ## features aka commands
 
-
-
-
-
+```bash
 trckr fullupdate
 trckr new                               # tell me what issues are 'new'
 trckr pipeline <issueNumber> <state>    # alias to pipeline should be pl
