@@ -25,6 +25,7 @@
     "read": "~1.0.5",
     "model": "mde/model#daf6d78",
     "request": "~2.30.0",
-    "osenv": "0.0.3"
+    "osenv": "0.0.3",
+    "moment": "~2.5.0"
   }
 }

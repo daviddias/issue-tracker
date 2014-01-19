@@ -16,7 +16,7 @@ function fullupdate(args) {
   console.log('→ Pipeline'.green);
 
   var pipeline = config.getConfig().pipeline;
-  var issue    = {};
+  var issue;
 
   whichIssue(function (number) {
     whichState(function (state) {
@@ -43,17 +43,18 @@ function fullupdate(args) {
   function whichIssue(cb) {
     var what = args._[0];
     if (what) {
-      return cb(what);
+      return validIssue(what, cb);
+      // return cb(what);
     }
 
     read({
       prompt: 'which issue? (type the number): '
     }, function(err, what) {
-      validIssue(what);
-      cb(what);
+      validIssue(what, cb);
+      // cb(what);
     });
 
-    function validIssue(number) {
+    function validIssue(number, cb) {
       Issue.first({number: number}, gotIssue);
 
       function gotIssue(err, _issue) {
@@ -62,6 +63,7 @@ function fullupdate(args) {
         }
         if (_issue) {
           issue = _issue;
+          cb(number);
         } else {
           error('Issue does not exist');
         }
@@ -70,22 +72,23 @@ function fullupdate(args) {
   }
  
   function whichState(cb) {
-    var what = args._[0];
+    var what = args._[1];
     if (what) {
-      return cb(what);
+      return validState(what, cb);
+      // return cb(what);
     }
 
     read({
       prompt: 'which state?(available: ' + pipeline.toString() + '):'
     }, function(err, what) {
-      validState(what);
-      cb(what);
+      validState(what, cb);
+      // cb(what);
     });
 
     function validState(state) {
       for (var i=0;i<pipeline.length;i++) {
         if (pipeline[i] === state){
-          return;
+          return cb(state);
         }
       }
       error('not a valid state');

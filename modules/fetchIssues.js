@@ -126,7 +126,7 @@ function storeIssue(issue) {
           if (err) {
             return console.log(err);
           }
-          console.log('Data saved \n'.yellow, data);
+          // console.log('Data saved \n'.yellow, data);
           console.log('New Issue Saved: '.green+data.number + ' ' + new Date());
         });
       }
