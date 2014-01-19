@@ -54,7 +54,7 @@ trckr set pipeline new,a,b,c,d,e,close
 ```bash
 trckt set repo <user>/<reponame>
 
-```
+```bash
 trckr set secret <useragent> <accesstoken>
 ```
 
