@@ -12,15 +12,15 @@ function usage(name, args) {
 function fullupdate(args) {
   console.log('→ New issues'.green);
  
-  Issue.all({trckr_state:'new'}, gotIssues);
+  Issue.all({trckrState:'new'}, gotIssues);
  
   function gotIssues(err, issues) {
-    console.log("++++++++++++++++ \n",issues[0]);
+    console.log('++++++++++++++++ \n',issues[0]);
   }
  
  
   Issue.all({number: 1}, function (err, things){
-    console.log("**************** \n",things);
+    console.log('**************** \n',things);
   });
  
    

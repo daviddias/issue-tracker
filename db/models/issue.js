@@ -18,9 +18,9 @@ var Issue = function () {
   this.property('closed_at','date');
   this.property('created_at','date');
   this.property('updated_at','date');
-  this.property('trckr_state','string');
-  this.property('trckr_lastreview','string');
-  this.property('trckr_pingback','string');
+  this.property('trckrState','string');
+  this.property('trckrLastReview','string');
+  this.property('trckrPingback','string');
 };
 
 model.register('Issue', Issue);

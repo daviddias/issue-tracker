@@ -72,7 +72,7 @@ function storeIssue(issue) {
         result[0].html_url = issue.html_url;
         result[0].state = issue.state;
         if(result[0].state === 'closed') {
-          result[0]['trckr_state'] = 'closed';
+          result[0].trckrState = 'closed';
         }
         result[0].title = issue.title;
         result[0].body = issue.body;
@@ -89,21 +89,26 @@ function storeIssue(issue) {
           if (err) {
             return console.log(err);
           }
-          console.log('Updated Issue: '.green + issue.number + ' ' + new Date());
+          console.log('Updated Issue: '.green+issue.number + ' ' + new Date());
         });
 
       } else {
         // 1.b if not - store
         var newIssue = Issue.create(issue);
-        newIssue.trckr_state = 'new';
-        newIssue.trckr_lastreview = null;
-        newIssue.trckr_pingback = null;
+        newIssue.trckrState = 'new';
+        newIssue.trckrLastReview = null;
+        newIssue.trckrPingback = null;
+        // newIssue.updateProperties({
+        //   trckr_state: 'new',
+        //   trckr_lastreview: null,
+        //   trckr_pingback: null
+        // });
         newIssue.save( function (err, data) {
           if (err) {
             return console.log(err);
           }
           console.log('Data saved \n'.yellow, data);
-          console.log('New Issue Saved: '.green + data.number + ' ' + new Date());
+          console.log('New Issue Saved: '.green+data.number + ' ' + new Date());
         });
       }
     };
