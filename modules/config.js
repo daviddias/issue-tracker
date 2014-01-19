@@ -30,7 +30,7 @@ function loadConfig() {
 
 function setDefault(){
   config = {
-    pipeline: ['new','beingReviewd','future','closed'],
+    pipeline: ['new','reviewing','future','closed'],
     repo: 'diasdavid/issue-tracker',
     // repo: 'https://api.github.com/repos/' + joyent/node + '/issues',
     secret: {

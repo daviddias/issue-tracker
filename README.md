@@ -3,7 +3,7 @@ Issue-Tracker
 
 This is a command-line tool to keep track of all the issues in a github project (made with github.com/joyent/node in mind)
 
-## you can use it today :)
+## you can try it today :) (disclaimer: not 100% done)
 
 Get the repo
 ```bash
