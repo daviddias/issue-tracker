@@ -44,14 +44,12 @@ function fullupdate(args) {
     var what = args._[0];
     if (what) {
       return validIssue(what, cb);
-      // return cb(what);
     }
 
     read({
       prompt: 'which issue? (type the number): '
     }, function(err, what) {
       validIssue(what, cb);
-      // cb(what);
     });
 
     function validIssue(number, cb) {
@@ -75,14 +73,12 @@ function fullupdate(args) {
     var what = args._[1];
     if (what) {
       return validState(what, cb);
-      // return cb(what);
     }
 
     read({
       prompt: 'which state?(available: ' + pipeline.toString() + '):'
     }, function(err, what) {
       validState(what, cb);
-      // cb(what);
     });
 
     function validState(state) {

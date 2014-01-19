@@ -20,7 +20,7 @@ function fullupdate(args) {
     issues.forEach(printIssues);
 
     function printIssues(issue){
-      console.log(daysBetween(issue.trckrLastReview,currentDate));
+      console.log(daysBetween(issue.trckrLastReview,currentDate)); 
       if (daysBetween(issue.trckrLastReview,currentDate) > 7) {
         console.log('++++++++++++++++');
         console.log(issue.title);
