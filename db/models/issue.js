@@ -21,7 +21,7 @@ var Issue = function () {
 
   this.property('trckrState','string');
   this.property('trckrLastReview','date');
-  this.property('trckrPingback','string');
+  this.property('trckrPingback','string'); // to ping me back in a specific future
 };
 
 model.register('Issue', Issue);
