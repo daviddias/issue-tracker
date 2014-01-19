@@ -5,7 +5,6 @@ var Issue = function () {
   this.adapter = adapter;
   this.property('url','string');
   this.property('htmlUrl','string');
-  // this.property('html_url','string');
   this.property('number','number');
   this.property('state','string');
   this.property('title','string');
@@ -19,12 +18,9 @@ var Issue = function () {
   this.property('closedAt','date');
   this.property('createdAt','date');
   this.property('updatedAt','date');
-  // this.property('pull_request','object');
-  // this.property('closed_at','date');
-  // this.property('created_at','date');
-  // this.property('updated_at','date');
+
   this.property('trckrState','string');
-  this.property('trckrLastReview','string');
+  this.property('trckrLastReview','date');
   this.property('trckrPingback','string');
 };
 
