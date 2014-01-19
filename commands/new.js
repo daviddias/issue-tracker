@@ -15,13 +15,14 @@ function fullupdate(args) {
   Issue.all({trckrState:'new'}, gotIssues);
  
   function gotIssues(err, issues) {
-    console.log('++++++++++++++++ \n',issues[0]);
+    issues.forEach(printIssues);
+
+    function printIssues(issue){
+      console.log('++++++++++++++++');
+      console.log(issue.title);
+      console.log(issue.htmlUrl);
+      console.log('++++++++++++++++\n');
+    }
   }
- 
- 
-  Issue.all({number: 1}, function (err, things){
-    console.log('**************** \n',things);
-  });
- 
    
 }

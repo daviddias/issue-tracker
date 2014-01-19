@@ -69,7 +69,7 @@ function storeIssue(issue) {
       if (result.length > 0) {
         // 1.a if yes - update
         result[0].url = issue.url;
-        result[0].html_url = issue.html_url;
+        result[0].htmlUrl = issue.html_url;
         result[0].state = issue.state;
         if(result[0].state === 'closed') {
           result[0].trckrState = 'closed';
@@ -81,10 +81,10 @@ function storeIssue(issue) {
         result[0].assignee = issue.assignee;
         result[0].milestone = issue.milestone;
         result[0].comments = issue.comments;
-        result[0].pull_request = issue.pull_request;
-        result[0].closed_at = issue.closed_at;
-        result[0].created_at = issue.created_at;
-        result[0].updated_at = issue.updated_at;
+        result[0].pullRequest = issue.pull_request;
+        result[0].closedAt = issue.closed_at;
+        result[0].createdAt = issue.created_at;
+        result[0].updatedAt = issue.updated_at;
         result[0].save(function (err, data) {
           if (err) {
             return console.log(err);
@@ -94,15 +94,34 @@ function storeIssue(issue) {
 
       } else {
         // 1.b if not - store
-        var newIssue = Issue.create(issue);
-        newIssue.trckrState = 'new';
+        var cleanIssue = {};
+
+        cleanIssue.url = issue.url;
+        cleanIssue.htmlUrl = issue.html_url;
+        cleanIssue.number = issue.number;
+        cleanIssue.state = issue.state;
+        cleanIssue.title = issue.title;
+        cleanIssue.body = issue.body;
+        cleanIssue.user = issue.user;
+        cleanIssue.labels = issue.labels;
+        cleanIssue.assignee = issue.assignee;
+        cleanIssue.milestone = issue.milestone;
+        cleanIssue.comments = issue.comments;
+        cleanIssue.pullRequest = issue.pull_request;
+        cleanIssue.closedAt = issue.closed_at;
+        cleanIssue.createdAt = issue.created_at;
+        cleanIssue.updatedAt = issue.updatedAt;
+
+        var newIssue = Issue.create(cleanIssue);
+        if (newIssue.state === 'closed'){
+          newIssue.trckrState = 'closed';
+        } else {
+          newIssue.trckrState = 'new';
+        }
+
         newIssue.trckrLastReview = null;
         newIssue.trckrPingback = null;
-        // newIssue.updateProperties({
-        //   trckr_state: 'new',
-        //   trckr_lastreview: null,
-        //   trckr_pingback: null
-        // });
+
         newIssue.save( function (err, data) {
           if (err) {
             return console.log(err);
