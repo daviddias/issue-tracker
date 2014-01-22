@@ -30,7 +30,7 @@ function fullupdate(args) {
           if (err) {
             return console.log(err);
           }
-          console.log(data);
+          // console.log(data);
           console.log('updated issue: '.green + number + ' to :' + state);
         });
         
