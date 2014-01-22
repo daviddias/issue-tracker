@@ -1,5 +1,12 @@
 var userHome    = require('osenv').home();
-var configPath  = userHome + '/.trckr-config.json';
+
+if (process.env.NODE_ENV === 'dev'){
+  console.log('RUNNING ON DEV MODE');
+  var configPath  = userHome + '/.trckr-config-dev.json';
+} else {
+  var configPath  = userHome + '/.trckr-config.json';
+}
+
 var fs          = require('fs');
 
 var config;
