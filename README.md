@@ -59,6 +59,14 @@ trckt set repo <user>/<reponame>
 trckr set secret <useragent> <accesstoken>
 ```
 
+### Dev mode
+
+This way, you won't mess with your records
+
+```bash
+export NODE_ENV=dev
+```
+
 ### Issue object model example
 
 ```javascript

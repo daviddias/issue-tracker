@@ -21,7 +21,7 @@ function fullupdate(args) {
   whichIssue(function (number) {
     whichState(function (state) {
       if (state === 'next') {
-        // TODO
+        // TODO jump to the next state in the pipeline
         console.log('TODO'.yellow);
       } else {
         issue.trckrState = state;
