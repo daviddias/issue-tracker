@@ -1,6 +1,7 @@
 require('colors');
 var Issue       = require('model').getModelByName('Issue');
- 
+var printer     = require('./../modules/printer.js');
+
 exports = module.exports = fullupdate;
  
 exports.usage =
@@ -15,14 +16,7 @@ function fullupdate(args) {
   Issue.all({trckrState:'new'}, gotIssues);
  
   function gotIssues(err, issues) {
-    issues.forEach(printIssues);
-
-    function printIssues(issue){
-      console.log('++++++++++++++++');
-      console.log(issue.title);
-      console.log(issue.htmlUrl);
-      console.log('++++++++++++++++\n');
-    }
+    printer.issues(issues);
   }
    
 }

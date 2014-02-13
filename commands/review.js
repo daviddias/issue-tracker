@@ -1,6 +1,7 @@
 require('colors');
 var Issue       = require('model').getModelByName('Issue');
- 
+var printer     = require('./../modules/printer.js');
+
 exports = module.exports = fullupdate;
  
 exports.usage =
@@ -17,18 +18,14 @@ function fullupdate(args) {
   Issue.all({trckrState:'reviewing'}, gotIssues);
  
   function gotIssues(err, issues) {
-    issues.forEach(printIssues);
+    var filtered = [];
 
-    function printIssues(issue){
-      console.log(daysBetween(issue.trckrLastReview,currentDate)); 
-      if (daysBetween(issue.trckrLastReview,currentDate) > 7) {
-        console.log('++++++++++++++++');
-        console.log(issue.title);
-        console.log(issue.htmlUrl);
-        console.log('++++++++++++++++\n');
+    for (var i=0;i<issues.length;i++){
+      if (daysBetween(issues[i].trckrLastReview,currentDate) > 7) {
+        filtered.push(issues[i]);
       }
-
     }
+    printer.issues(issues);
   }
   
 
