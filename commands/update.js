@@ -3,6 +3,7 @@ require('colors');
 // var fs          = require('fs');
 // var error       = require('../modules/error.js');
 var fetchIssues = require('../modules/fetchIssues.js');
+var fetchMetadata = require('../modules/fetchMetadata.js');
 
 exports = module.exports = update;
 
@@ -14,5 +15,6 @@ function usage(name, args) {
 
 function update(args) {
   console.log('→ Update'.green);
-  fetchIssues();
+  // fetchIssues();
+  fetchMetadata();
 }

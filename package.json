@@ -27,6 +27,7 @@
     "request": "~2.30.0",
     "osenv": "0.0.3",
     "moment": "~2.5.0",
-    "node-print": "0.0.4"
+    "node-print": "0.0.4",
+    "async": "~0.2.10"
   }
 }
