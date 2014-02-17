@@ -62,7 +62,6 @@ function fetchMetadata() {
 
 
 function fetchLabels(cb) {
-
   var options = {
     url: 'https://api.github.com/repos/' + repo + '/labels',
     headers: {
@@ -79,7 +78,7 @@ function fetchLabels(cb) {
 
   function receiveLabels(err, response, body) {
     if (err) {
-      return console.log(err);
+      return error(err.detail);
     }
     var thing = JSON.parse(body);
     for(var i=0;i<thing.length;i++){
@@ -87,20 +86,58 @@ function fetchLabels(cb) {
     }
     cb();
   }
-
-
-
 }
 
 function fetchAssignees(cb) {
-  // assignees 
-  // http://developer.github.com/v3/issues/assignees/#list-assignees
+  var options = {
+    url: 'https://api.github.com/repos/' + repo + '/assignees',
+    headers: {
+      'User-Agent': secret.useragent
+    },
+    qs: {
+      state: 'open',
+      page: 1,
+      access_token: secret.accesstoken
+    }
+  };
 
-  cb();
+  request.get(options, receiveAssignees);
+
+  function receiveAssignees(err, response, body) {
+    if (err) {
+      return error(err.detail);
+    }
+    var thing = JSON.parse(body);
+    for(var i=0;i<thing.length;i++){
+      metadata.assignees.push(thing[i].login);
+    }
+    cb();
+  }
 }
 
 function fetchMilestones(cb) {
-  // Get milestones
-  // http://developer.github.com/v3/issues/milestones/#list-milestones-for-a-repository
-  cb();
+  var options = {
+    url: 'https://api.github.com/repos/' + repo + '/milestones',
+    headers: {
+      'User-Agent': secret.useragent
+    },
+    qs: {
+      state: 'open',
+      page: 1,
+      access_token: secret.accesstoken
+    }
+  };
+
+  request.get(options, receiveMilestones);
+
+  function receiveMilestones(err, response, body) {
+    if (err) {
+      return error(err.detail);
+    }
+    var thing = JSON.parse(body);
+    for(var i=0;i<thing.length;i++){
+      metadata.milestones.push(thing[i].title);
+    }
+    cb();
+  }
 }
