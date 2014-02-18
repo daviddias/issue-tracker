@@ -19,14 +19,8 @@ function fullupdate(args) {
     var filtered = [];
 
     for (var i=0;i<issues.length;i++){
-
-      // if(issues[i].labels.length === 0){
-      //   console.log('true');
-      //         console.log('labels: ', issues[i].labels);
-      // }
-
-
-      if(issues[i].labels.length === 0 && !issues[i].assignee && !issues[i].milestone) {
+      if(issues[i].labels.length === 0 &&
+        !issues[i].assignee && !issues[i].milestone) {
         filtered.push(issues[i]);
       }
     }
