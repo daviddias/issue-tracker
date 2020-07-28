@@ -24,7 +24,7 @@
     "colors": "~0.6.2",
     "read": "~1.0.5",
     "model": "git://github.com/mde/model#daf6d78",
-    "request": "~2.30.0",
+    "request": "~2.88.2",
     "osenv": "0.0.3",
     "moment": "~2.5.0",
     "node-print": "0.0.4",
